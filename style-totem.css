@@ -1,0 +1,552 @@
+/* ==========================================================================
+   ESTILOS: TÓTEM FÍSICO DE AUTOSERVICIO BANCARIO - TEMA CLARO DE DÍA
+   Reglas: Grid exterior, Flexbox interior, px y %, colores directos sin variables
+   ========================================================================== */
+
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #eef2f6;
+    color: #0f172a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* CONTENEDOR ENVOLVENTE DEL SIMULADOR (FLEXBOX) */
+  .totem-viewport {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .kiosk-status-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+  
+  .status-led {
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #10b981;
+  }
+  
+  /* ==========================================================================
+     CHASIS DE COLUMNA DEL TÓTEM (TITANIO / ACERO CLARO SATINADO)
+     ========================================================================== */
+  .totem-chassis {
+    width: 100%;
+    max-width: 560px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 4px solid #cbd5e1;
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), inset 0 1px 0 #ffffff;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+  }
+  
+  /* CABEZAL SUPERIOR DEL TÓTEM (FLEXBOX) */
+  .totem-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 12px 16px;
+  }
+  
+  .totem-emblem {
+    width: 36px;
+    height: 36px;
+    background-color: #2563eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 900;
+    color: #ffffff;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+  }
+  
+  .totem-branch-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .totem-bank-name {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #0f172a;
+  }
+  
+  .totem-terminal-id {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+  }
+  
+  .totem-clock {
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    background-color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+  }
+  
+  /* ==========================================================================
+     PANTALLA TÁCTIL INTEGRADA (CSS GRID GENERAL)
+     ========================================================================== */
+  .touch-screen-display {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 16px;
+  }
+  
+  .touch-screen-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .touch-screen-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: 0.5px;
+  }
+  
+  .touch-screen-subtitle {
+    font-size: 12px;
+    color: #64748b;
+  }
+  
+  /* BOTONES TÁCTILES DEL KIOSCO: MATRIZ 2x2 (CSS GRID GENERAL Y FLEXBOX INTERNO) */
+  .touch-buttons-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .kiosk-btn {
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 16px 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    min-height: 120px;
+    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+  }
+  
+  .kiosk-btn:active {
+    transform: translateY(2px);
+  }
+  
+  /* 1. PRIORIDAD: ÁMBAR CÁLIDO LUMINOSO */
+  .btn-priority {
+    background-color: #fffbeb;
+    border-color: #fde68a;
+    color: #78350f;
+    box-shadow: 0 2px 6px rgba(217, 119, 6, 0.08);
+  }
+  
+  .btn-priority:hover {
+    background-color: #fef3c7;
+    border-color: #f59e0b;
+  }
+  
+  /* 2. CAJA: AZUL COBALTO CLARO */
+  .btn-caja {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e3a8a;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
+  }
+  
+  .btn-caja:hover {
+    background-color: #dbeafe;
+    border-color: #2563eb;
+  }
+  
+  /* 3. TARJETAS: VIOLETA CLARO */
+  .btn-tarjetas {
+    background-color: #f5f3ff;
+    border-color: #ddd6fe;
+    color: #4c1d95;
+    box-shadow: 0 2px 6px rgba(124, 58, 237, 0.08);
+  }
+  
+  .btn-tarjetas:hover {
+    background-color: #ede9fe;
+    border-color: #7c3aed;
+  }
+  
+  /* 4. CRÉDITOS / ASESORÍA: ESMERALDA CLARO */
+  .btn-creditos {
+    background-color: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #064e3b;
+    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.08);
+  }
+  
+  .btn-creditos:hover {
+    background-color: #d1fae5;
+    border-color: #059669;
+  }
+  
+  .kiosk-btn-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .kiosk-btn-icon {
+    font-size: 26px;
+    line-height: 1;
+  }
+  
+  .kiosk-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .kiosk-btn-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    line-height: 1.25;
+  }
+  
+  .btn-priority .kiosk-btn-title { color: #92400e; }
+  .btn-caja .kiosk-btn-title { color: #1e40af; }
+  .btn-tarjetas .kiosk-btn-title { color: #5b21b6; }
+  .btn-creditos .kiosk-btn-title { color: #065f46; }
+  
+  .kiosk-btn-desc {
+    font-size: 11px;
+    color: #475569;
+    line-height: 1.25;
+  }
+  
+  .kiosk-btn-code {
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    align-self: flex-end;
+  }
+  
+  .btn-priority .kiosk-btn-code {
+    background-color: #f59e0b;
+    color: #ffffff;
+  }
+  
+  .btn-caja .kiosk-btn-code {
+    background-color: #0284c7;
+    color: #ffffff;
+  }
+  
+  .btn-tarjetas .kiosk-btn-code {
+    background-color: #7c3aed;
+    color: #ffffff;
+  }
+  
+  .btn-creditos .kiosk-btn-code {
+    background-color: #059669;
+    color: #ffffff;
+  }
+  
+  .touch-screen-footer {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+  }
+  
+  /* ==========================================================================
+     RANURA MECÁNICA DE DISPENSACIÓN DE TICKETS
+     ========================================================================== */
+  .dispenser-hardware-zone {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .dispenser-bezel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .dispenser-light {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #0284c7;
+  }
+  
+  .dispenser-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #475569;
+  }
+  
+  .dispenser-slot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .slot-opening {
+    width: 85%;
+    height: 10px;
+    background-color: #1e293b;
+    border: 2px solid #94a3b8;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 5;
+  }
+  
+  /* TICKET TÉRMICO FÍSICO QUE EMERGE DE LA BOCA MECÁNICA */
+  .printed-ticket {
+    width: 82%;
+    background-color: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-top: none;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    animation: print-ticket 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: -3px;
+    z-index: 1;
+  }
+  
+  @keyframes print-ticket {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px) scaleY(0.4);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+  }
+  
+  .ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: 6px;
+  }
+  
+  .ticket-bank-name {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #0f172a;
+  }
+  
+  .ticket-badge {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 12px;
+  }
+  
+  .badge-p {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .badge-c {
+    background-color: #e0f2fe;
+    color: #0369a1;
+  }
+  
+  .badge-t {
+    background-color: #ede9fe;
+    color: #5b21b6;
+  }
+  
+  .badge-a {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .ticket-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 0;
+  }
+  
+  .ticket-service-name {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #334155;
+    background-color: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  
+  .ticket-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  
+  .ticket-code {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #0f172a;
+  }
+  
+  .ticket-instructions {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  .ticket-footer {
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .ticket-meta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #475569;
+    font-family: monospace;
+  }
+  
+  .ticket-barcode {
+    height: 16px;
+    background: repeating-linear-gradient(
+      90deg,
+      #0f172a 0px,
+      #0f172a 2px,
+      transparent 2px,
+      transparent 4px,
+      #0f172a 4px,
+      #0f172a 7px,
+      transparent 7px,
+      transparent 9px
+    );
+    margin-top: 2px;
+  }
+  
+  .ticket-farewell {
+    font-size: 10px;
+    text-align: center;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  
+  /* PEDESTAL BASE INFERIOR DEL TÓTEM */
+  .totem-pedestal-base {
+    width: 60%;
+    height: 8px;
+    background-color: #94a3b8;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+  
+  /* RESPONSIVE MEDIA QUERIES */
+  @media (max-width: 540px) {
+    body {
+      padding: 10px;
+    }
+  
+    .totem-chassis {
+      padding: 16px;
+      border-radius: 20px;
+    }
+  
+    .printed-ticket {
+      width: 95%;
+    }
+  }

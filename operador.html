@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco Nacional - Terminal Operativa de Caja</title>
+  <link rel="stylesheet" href="style-operador.css">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL: CSS GRID -->
+  <main class="console-layout">
+
+    <!-- BARRA SUPERIOR DE LA TERMINAL -->
+    <header class="console-header">
+      <div class="operator-profile">
+        <span class="operator-avatar">👤</span>
+        <div class="operator-details">
+          <span class="operator-name">Operador: <strong>Giménez, S.</strong></span>
+          <span class="operator-sub">Sucursal 101 &bull; Puesto de Atención</span>
+        </div>
+      </div>
+
+      <div class="desk-control">
+        <label for="select-caja" class="desk-label">Puesto Asignado:</label>
+        <select id="select-caja" class="desk-select">
+          <option value="Caja 2">Caja 2 (Tesorería)</option>
+          <option value="Caja 1">Caja 1 (Tesorería)</option>
+          <option value="Box 1">Box 1 (Tarjetas)</option>
+          <option value="Box 2">Box 2 (Asesoría)</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- MATRIZ DE TELEMETRÍA DE LAS 4 COLAS EN ESPERA: CSS GRID (4 COLUMNAS) -->
+    <section class="telemetry-section">
+      <!-- 1. COLA PRIORITARIA -->
+      <div class="telemetry-card card-priority">
+        <div class="telemetry-head">
+          <span class="telemetry-badge badge-p">Prioridad</span>
+          <span class="telemetry-code">[P]</span>
+        </div>
+        <div class="telemetry-value" id="contador-prioritario">0</div>
+        <span class="telemetry-caption">Mayores / Mov. Reducida</span>
+      </div>
+
+      <!-- 2. COLA CAJAS -->
+      <div class="telemetry-card card-caja">
+        <div class="telemetry-head">
+          <span class="telemetry-badge badge-c">Cajas</span>
+          <span class="telemetry-code">[C]</span>
+        </div>
+        <div class="telemetry-value" id="contador-caja">0</div>
+        <span class="telemetry-caption">Efectivo / Cheques</span>
+      </div>
+
+      <!-- 3. COLA TARJETAS -->
+      <div class="telemetry-card card-tarjetas">
+        <div class="telemetry-head">
+          <span class="telemetry-badge badge-t">Tarjetas</span>
+          <span class="telemetry-code">[T]</span>
+        </div>
+        <div class="telemetry-value" id="contador-tarjetas">0</div>
+        <span class="telemetry-caption">Cuentas / Plásticos</span>
+      </div>
+
+      <!-- 4. COLA ASESORÍA -->
+      <div class="telemetry-card card-asesoria">
+        <div class="telemetry-head">
+          <span class="telemetry-badge badge-a">Asesoría</span>
+          <span class="telemetry-code">[A]</span>
+        </div>
+        <div class="telemetry-value" id="contador-asesoria">0</div>
+        <span class="telemetry-caption">Créditos / Finanzas</span>
+      </div>
+    </section>
+
+    <!-- ÁREA DE TURNO EN ATENCIÓN ACTUAL -->
+    <section class="serving-section">
+      <div class="serving-card">
+        <div class="serving-indicator">
+          <span class="indicator-led"></span>
+          <span class="indicator-text">En Atención Ahora &bull; <span id="serving-caja-label">Caja 2</span></span>
+        </div>
+
+        <div class="serving-number" id="turno-actual-numero">--</div>
+        <div class="serving-service" id="turno-actual-servicio">Sin turno en este puesto</div>
+        <div class="serving-meta" id="turno-actual-meta">Seleccioná "Llamar Siguiente Turno"</div>
+      </div>
+
+      <div class="call-action-group">
+        <button type="button" class="btn-dispatch" id="btn-llamar">
+          <span class="btn-dispatch-icon">📢</span>
+          <span class="btn-dispatch-label">Llamar Siguiente Turno</span>
+        </button>
+
+        <p class="dispatch-rule-hint">
+          Criterio: Turnos prioritarios <strong>[P]</strong> tienen despacho inmediato antes de cualquier trámite general.
+        </p>
+      </div>
+    </section>
+
+    <!-- HISTORIAL RECIENTE DEL OPERADOR -->
+    <footer class="console-footer">
+      <span class="footer-title">Último despacho realizado:</span>
+      <span class="footer-value" id="ultimo-despachado">Ninguno todavía</span>
+    </footer>
+
+  </main>
+
+  <script src="operador.js"></script>
+</body>
+</html>
